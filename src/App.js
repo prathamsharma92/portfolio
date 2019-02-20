@@ -1,28 +1,56 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Projects from './Projects';
+import SocialProfiles from './SocialProfiles';
+import profile from './assets/profile.png';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+    constructor() {
+     super();
+     this.state = {displayBio: false};
+     this.toggleThisBio = this.toggleThisBio.bind(this);
+     // this.readLess = this.readLess.bind(this);
+    }
+
+    toggleThisBio(){
+      var cll = this.state.displayBio === true ? false : true;
+      this.setState({displayBio: cll});
+    }
+    // readLess(){
+    //  this.setState({displayBio: false});
+    // }
+
+    render() {
+     // const bio = this.state.displayBio ? (
+     //     <div>
+     //     <p>welcome</p>
+     //     <p>to react</p>
+     //     </div>
+     //     ) : null;
+     // if(!this.state.displayBio){
+     //     bio = null;
+     // }
+
+     return(
+       <div>
+         <img src={profile} alt='profile-image' className='profile'/>
+         <h1>Hello,</h1>
+         <p>My name is Pratham. I'm a software engineer.</p>
+         <p>I like to look for new things.</p>
+         {this.state.displayBio ? (
+         <div>
+         <p>Welcome to react</p>
+         <button onClick = {this.toggleThisBio}>Read less</button>
+         </div>
+         ) : (
+           <button onClick = {this.toggleThisBio}>Read more</button>
+         )}
+         <hr/>
+         <Projects/>
+         <hr/>
+         <SocialProfiles/>
+       </div>
+     )
+    }
 }
 
 export default App;
